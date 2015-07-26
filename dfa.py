@@ -23,7 +23,7 @@ class DFA():
 		q = self.q_0
 
 		for a in w:
-			q = self.delta(q, a)
+			q = self.delta[q, a]
 
 		return q in self.F
 
@@ -94,9 +94,9 @@ class DFA():
 			if not change:
 				break
 
-
+		return Blocks
 		# now we compute the new automaton
-		delta = {}
+"""		delta = {}
 		q_0 = None
 		F = set()
 
@@ -105,7 +105,7 @@ class DFA():
 				q_0 = B
 
 			if B <= self.F:
-				T.add(B)
+				F.add(B)
 
 			p = B.pop()
 			B.add(p)
@@ -116,3 +116,4 @@ class DFA():
 						delta[B, a] = C
 
 		return DFA(Blocks, self.Sigma, delta, q_0, F)
+"""
