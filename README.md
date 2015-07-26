@@ -6,7 +6,14 @@ The DFA module is inside /dfa.py. Note that there no parser for any human-readab
 ```python
 Q = {0, 1, 2}
 Sigma = {'a', 'b'}
-delta = {(0, 'a'): 1, (0, 'b'): 2, (1, 'a'): 1, (1, 'b'): 0, (2, 'a'): 1, (2, 'b'): 1}
+delta = {
+	(0, 'a'): 1,
+	(0, 'b'): 2,
+	(1, 'a'): 1,
+	(1, 'b'): 0,
+	(2, 'a'): 1,
+	(2, 'b'): 1
+}
 q_0 = 0
 F = {1}
 ```
