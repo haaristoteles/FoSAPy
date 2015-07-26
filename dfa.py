@@ -95,25 +95,3 @@ class DFA():
 				break
 
 		return Blocks
-		# now we compute the new automaton
-"""		delta = {}
-		q_0 = None
-		F = set()
-
-		for B in Blocks:
-			if self.q_0 in B:
-				q_0 = B
-
-			if B <= self.F:
-				F.add(B)
-
-			p = B.pop()
-			B.add(p)
-			for a in self.Sigma:
-				q = self.delta(p, a)
-				for C in Blocks:
-					if q in C:
-						delta[B, a] = C
-
-		return DFA(Blocks, self.Sigma, delta, q_0, F)
-"""
