@@ -21,11 +21,17 @@ class DFA():
 		self.F = F
 
 
+	def __repr__(self):
+		""" To string method """
+		return "A = (\n\tQ = {0},\n\tSigma = {1},\n\tdelta = {2},\n\tq_0 = {3},\n\tF = {4}\n)".format(self.Q, self.Sigma, self.delta, self.q_0, self.F)
+
+
 	def accept(self, w, doc=False):
 		""" solves the word problem for DFA """
 		if doc:
 			print("Run {0} on the DFA".format(w))
 			print("===={0}===========".format("=" * len(w)))
+
 		# init
 		q = self.q_0
 		if doc:
@@ -101,13 +107,14 @@ class DFA():
 			change = False
 
 			for B in Blocks:
+				if len(B) == 1:
+					# we don't checkout singletons, there is nothing to split
+					continue
+
 				# for each block pick an element (quick and dirty)
 				p = B.pop()
 				B.add(p)
 
-				if len(B) == 1:
-					# we don't checkout singletons, there is nothing to split
-					continue
 				if doc:
 					print("\tCheckout block {0}, take pivot state {1}".format(B, p))
 
@@ -148,6 +155,7 @@ class DFA():
 				break
 
 		# now we compute the new automaton
+		# TODO: better string representation
 		delta = {}
 		q_0 = None
 		F = set()
@@ -157,14 +165,14 @@ class DFA():
 				q_0 = B
 
 			if B <= self.F:
-				F.add(B)
+				F.add(frozenset(B))
 
 			p = B.pop()
 			B.add(p)
 			for a in self.Sigma:
-				q = self.delta(p, a)
+				q = self.delta[p, a]
 				for C in Blocks:
 					if q in C:
-						delta[B, a] = C
+						delta[frozenset(B), a] = C
 
 		return DFA(Blocks, self.Sigma, delta, q_0, F)
