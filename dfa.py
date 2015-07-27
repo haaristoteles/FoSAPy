@@ -1,17 +1,19 @@
 """
-DFA class
+RegPy - DFA module
+Author: Niklas Rieken
 """
 
 class DFA():
 	""" A = (Q, Sigma, delta, q_0, F) """
-	Q = {}
-	Sigma = {}
+	Q = set()
+	Sigma = set()
 	delta = {}
 	q_0 = None
-	F = {}
+	F = set()
 
 
 	def __init__(self, Q, Sigma, delta, q_0, F):
+		""" Constructor """
 		self.Q = Q
 		self.Sigma = Sigma
 		self.delta = delta
@@ -20,6 +22,7 @@ class DFA():
 
 
 	def accept(self, w):
+		""" solves the word problem for DFA """
 		q = self.q_0
 
 		for a in w:
@@ -29,6 +32,7 @@ class DFA():
 
 
 	def minimize(self, doc=False):
+		""" minimizes the DFA by block refinement """
 		if doc:
 			print("Minimizing procedure starts")
 			print("===========================")
