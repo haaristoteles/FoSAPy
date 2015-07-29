@@ -86,6 +86,44 @@ class DFA():
 		return out
 
 
+	def product(self, other, doc=False):
+		""" generic method to compute the product automaton with a second automaton """
+		Q = set()
+		delta = {}
+		q_0 = (self.q_0, other.q_0)
+
+		for p in self.Q:
+			for q in other.Q:
+				Q.add((p, q))
+
+				for a in self.Sigma:
+					delta.append(((p, q), a): (self.delta[p, a], other.delta[q, a]))
+
+		return DFA(Q, self.Sigma, delta, q_0, set())
+
+
+	def union(self, other, doc=False):
+		""" computes the product automaton for the union of L(self) and L(other) """
+		A = self.product(other, doc)
+		for p in self.Q:
+			for q in other.Q:
+				if p in self.F or q in other.Q:
+					A.F.add((p, q))
+
+		return A
+
+
+	def intersection(self, other, doc=False):
+		""" computes the product automaton for the intersection of L(self) and L(other) """
+		A = self.product(other, doc)
+		for p in self.Q:
+			for q in other.Q:
+				if p in self.F and q in other.Q:
+					A.F.add((p, q))
+
+		return A
+
+
 	def minimize(self, doc=False):
 		""" minimizes the DFA by block refinement """
 		if doc:
