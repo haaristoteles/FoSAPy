@@ -1,5 +1,5 @@
 # RegPy
-A python module with algorithms for regular languages and finite automata.
+A python module with algorithms for regular languages and finite automata for educational purpose.
 
 ## Deterministic Finite Automata (DFA)
 The DFA module is inside /dfa.py. Note that there no parser for any human-readable representation of DFAs implemented. For instance
