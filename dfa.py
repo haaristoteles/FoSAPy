@@ -97,7 +97,7 @@ class DFA():
 				Q.add((p, q))
 
 				for a in self.Sigma:
-					delta.append(((p, q), a): (self.delta[p, a], other.delta[q, a]))
+					delta[((p, q), a)] = (self.delta[p, a], other.delta[q, a])
 
 		return DFA(Q, self.Sigma, delta, q_0, set())
 
