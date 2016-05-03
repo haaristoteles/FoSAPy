@@ -1,5 +1,5 @@
 """
-RegPy - DFA module
+FoSAPy - DFA module
 Author: Niklas Rieken
 """
 
