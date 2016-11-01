@@ -107,8 +107,8 @@ class DFA():
 		A = self.product(other, doc)
 		for p in self.Q:
 			for q in other.Q:
-				if p in self.F or q in other.Q:
-					A.F.add((p, q))
+				if p in self.F or q in other.F:
+				A.F.add((p, q))
 
 		return A
 
@@ -118,7 +118,7 @@ class DFA():
 		A = self.product(other, doc)
 		for p in self.Q:
 			for q in other.Q:
-				if p in self.F and q in other.Q:
+				if p in self.F and q in other.F:
 					A.F.add((p, q))
 
 		return A
