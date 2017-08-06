@@ -4,7 +4,7 @@ Author: Niklas Rieken
 """
 
 
-class DFA():
+class DFA:
     """ A = (Q, Sigma, delta, q_0, F) """
     Q = set()
     Sigma = set()
@@ -28,9 +28,9 @@ class DFA():
                                                                                                       self.q_0, self.F)
 
     def accept(self, w, doc=False):
-        """ solves the word problem for DFA """
+        """ solves the word problem for trivial_dfa """
         if doc:
-            print("Run {0} on the DFA".format(w))
+            print("Run {0} on the trivial_dfa".format(w))
             print("===={0}===========".format("=" * len(w)))
 
         # init
@@ -49,9 +49,9 @@ class DFA():
         return q in self.F
 
     def emptinesstest(self, doc=False):
-        """ solves the emptiness problem for DFA """
+        """ solves the emptiness problem for trivial_dfa """
         if doc:
-            print("Apply emptiness test on DFA")
+            print("Apply emptiness test on trivial_dfa")
             print("===========================")
 
         reachable_states = [self.q_0]
@@ -72,7 +72,7 @@ class DFA():
         return len(set(reachable_states) & self.F) == 0
 
     def universaltest(self, doc=False):
-        """ solves the universality problem for DFA """
+        """ solves the universality problem for trivial_dfa """
         self.F = self.Q - self.F
         if doc:
             print("Switch accepting and non-accepting states... Now:")
@@ -121,7 +121,7 @@ class DFA():
         return A
 
     def minimize(self, doc=False):
-        """ minimizes the DFA by block refinement """
+        """ minimizes the trivial_dfa by block refinement """
         if doc:
             print("Minimizing procedure starts")
             print("===========================")
